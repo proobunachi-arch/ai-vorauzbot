@@ -343,8 +343,8 @@ async def profile_handler(message: Message):
   cursor.execute(
       "SELECT referrals_count FROM users WHERE user_id = ?", (user_id,)
   )
-  count = cursor.fetchone()[0]
-  conn.close()
+row = cursor.fetchone()
+count = row[0] if row is not None else 0
 
   text = (
       f"👤 <b>Sizning profilingiz:</b>\n\nID: <code>{user_id}</code>\n👥 Taklif"
